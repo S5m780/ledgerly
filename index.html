@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledgerly — Early Access</title>
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-soft:#121214;
+    --card:#16161a;
+    --card-2:#1c1c21;
+    --border:#26262c;
+    --text:#f4f1ea;
+    --muted:#9b978e;
+    --muted-2:#6f6c66;
+    --gold:#d9a441;
+    --gold-soft:#e7c178;
+    --green:#7ec08a;
+    --radius:18px;
+    --serif:"Iowan Old Style","Palatino Linotype","Palatino",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,10,11,.72);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:var(--serif);font-size:24px;letter-spacing:.3px;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--gold),#9a6c1c);display:inline-flex;align-items:center;justify-content:center;font-size:14px;color:#1a1206;font-weight:700}
+  .nav-cta{font-size:14px;color:var(--muted);border:1px solid var(--border);padding:9px 16px;border-radius:999px;transition:.2s}
+  .nav-cta:hover{color:var(--text);border-color:var(--gold)}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;padding:96px 0 60px;text-align:center}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(620px 360px at 50% -8%,rgba(217,164,65,.18),transparent 70%);
+  }
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--gold-soft);
+    border:1px solid rgba(217,164,65,.35);background:rgba(217,164,65,.07);padding:6px 14px;border-radius:999px;margin-bottom:26px}
+  .pill .blink{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(217,164,65,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(217,164,65,.5)}70%{box-shadow:0 0 0 8px rgba(217,164,65,0)}100%{box-shadow:0 0 0 0 rgba(217,164,65,0)}}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.4vw,68px);line-height:1.04;letter-spacing:-.5px;margin-bottom:22px}
+  h1 .accent{color:var(--gold-soft);font-style:italic}
+  .sub{font-size:clamp(17px,2.1vw,20px);color:var(--muted);max-width:620px;margin:0 auto 36px}
+
+  /* ===== FORM ===== */
+  .signup{max-width:480px;margin:0 auto}
+  .field-row{display:flex;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:6px;transition:.2s}
+  .field-row:focus-within{border-color:var(--gold)}
+  .field-row input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-size:15px;padding:10px 18px;font-family:var(--sans)}
+  .field-row input::placeholder{color:var(--muted-2)}
+  .btn{cursor:pointer;border:0;font-family:var(--sans);font-size:15px;font-weight:600;border-radius:999px;
+    padding:12px 24px;color:#1a1206;background:linear-gradient(140deg,var(--gold-soft),var(--gold));transition:.2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(217,164,65,.28)}
+  .hint{font-size:13px;color:var(--muted-2);margin-top:14px}
+  .avatars{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:30px;color:var(--muted);font-size:14px}
+  .stack{display:flex}
+  .stack span{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);margin-left:-9px;background:var(--card-2);display:inline-block;
+    background-size:cover}
+  .stack span:nth-child(1){background:#3a3320}
+  .stack span:nth-child(2){background:#243528}
+  .stack span:nth-child(3){background:#2a2330}
+  .stack span:nth-child(4){background:#1f2c38}
+
+  /* ===== APP MOCK ===== */
+  .showcase{margin:64px auto 0;max-width:920px;position:relative}
+  .browser{background:var(--bg-soft);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+  .browser-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--border);background:#0f0f11}
+  .browser-bar i{width:11px;height:11px;border-radius:50%;background:#33333a;display:inline-block}
+  .app{display:grid;grid-template-columns:170px 1fr;min-height:360px;text-align:left}
+  .side{border-right:1px solid var(--border);padding:20px 14px;background:#0d0d0f}
+  .side .logo{font-family:var(--serif);font-size:18px;margin-bottom:22px;padding-left:6px}
+  .nav-item{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);padding:8px 10px;border-radius:10px;margin-bottom:3px}
+  .nav-item.on{background:var(--card-2);color:var(--text)}
+  .nav-item .ic{font-size:14px;width:16px;text-align:center}
+  .sec-label{font-size:10px;letter-spacing:1.4px;color:var(--muted-2);text-transform:uppercase;margin:18px 0 8px 10px}
+  .main{padding:24px}
+  .greet{color:var(--muted-2);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+  .greet-big{font-family:var(--serif);font-size:24px;margin:4px 0 18px}
+  .balance-card{background:linear-gradient(135deg,#1b1b20,#141417);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
+  .balance-card::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.16),transparent 70%)}
+  .balance-card .lab{font-size:10px;letter-spacing:1.4px;color:var(--muted-2);text-transform:uppercase}
+  .balance-card .amt{font-family:var(--serif);font-size:34px;margin:6px 0 2px}
+  .balance-card .meta{font-size:12.5px;color:var(--muted)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+  .tile{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 8px;text-align:center}
+  .tile .ic{font-size:18px}
+  .tile .t{font-size:11px;color:var(--muted);margin-top:6px}
+  .prog{margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .prog .h{font-size:11px;letter-spacing:1px;color:var(--muted-2);text-transform:uppercase;margin-bottom:10px}
+  .prog .bar{height:7px;border-radius:99px;background:#26262c;overflow:hidden;margin:9px 0 4px}
+  .prog .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+  .prog .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+
+  /* ===== SECTIONS ===== */
+  section.block{padding:92px 0}
+  .eyebrow{text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,46px);line-height:1.1;text-align:center;letter-spacing:-.4px;margin-bottom:18px}
+  .lead{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 8px;font-size:18px}
+
+  /* problem cards */
+  .problems{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  .pcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px}
+  .pcard .q{font-family:var(--serif);font-size:21px;color:var(--text);margin-bottom:10px;font-style:italic}
+  .pcard p{color:var(--muted);font-size:15px}
+
+  /* features */
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px}
+  .fcard{background:linear-gradient(160deg,var(--card),#101013);border:1px solid var(--border);border-radius:var(--radius);padding:30px;transition:.25s}
+  .fcard:hover{border-color:rgba(217,164,65,.4);transform:translateY(-3px)}
+  .fcard.wide{grid-column:1 / -1}
+  .ficon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;
+    background:rgba(217,164,65,.12);border:1px solid rgba(217,164,65,.25);margin-bottom:18px}
+  .fcard h3{font-family:var(--serif);font-weight:500;font-size:23px;margin-bottom:9px}
+  .fcard p{color:var(--muted);font-size:15px}
+  .tag{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold-soft);
+    border:1px solid rgba(217,164,65,.3);border-radius:99px;padding:3px 10px;margin-bottom:16px}
+
+  /* how */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;counter-reset:s}
+  .step{text-align:center}
+  .step .n{counter-increment:s;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;margin:0 auto 16px}
+  .step .n::before{content:counter(s)}
+  .step h4{font-size:17px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  /* ===== SURVEY / CTA ===== */
+  .cta{padding:96px 0}
+  .cta-box{background:linear-gradient(160deg,#1a1813,#0f0f11);border:1px solid rgba(217,164,65,.25);border-radius:26px;padding:54px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-box::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(500px 240px at 50% 0,rgba(217,164,65,.15),transparent 70%)}
+  .cta-box>*{position:relative;z-index:1}
+  .cta h2{margin-bottom:10px}
+  .cta .lead{margin-bottom:30px}
+  .survey{max-width:520px;margin:26px auto 0;text-align:left}
+  .survey label{display:block;font-size:13px;color:var(--muted);margin:18px 0 9px;letter-spacing:.3px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{cursor:pointer;font-size:13.5px;color:var(--muted);border:1px solid var(--border);background:var(--card);
+    padding:9px 15px;border-radius:999px;transition:.18s;user-select:none}
+  .chip:hover{border-color:var(--gold-soft);color:var(--text)}
+  .chip.sel{background:rgba(217,164,65,.16);border-color:var(--gold);color:var(--gold-soft)}
+  .survey .btn{width:100%;margin-top:24px;padding:15px}
+  .thanks{display:none;text-align:center;padding:20px 0}
+  .thanks .check{width:64px;height:64px;border-radius:50%;background:rgba(126,192,138,.14);border:1px solid var(--green);
+    color:var(--green);font-size:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+  .thanks h3{font-family:var(--serif);font-size:28px;margin-bottom:8px}
+  .thanks p{color:var(--muted)}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--muted-2);font-size:13.5px}
+  footer .brand{justify-content:center;font-size:20px;margin-bottom:12px}
+
+  @media(max-width:760px){
+    .problems,.features,.steps{grid-template-columns:1fr}
+    .app{grid-template-columns:1fr}
+    .side{display:none}
+    .field-row{flex-direction:column;border-radius:18px}
+    .field-row input{text-align:center}
+    .btn{width:100%}
+    .tiles{grid-template-columns:repeat(4,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot">L</span>Ledgerly</div>
+    <a href="#join" class="nav-cta">Get early access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="blink"></span>Now in private beta · Early access open</span>
+    <h1>Your whole money life,<br><span class="accent">finally in one place.</span></h1>
+    <p class="sub">Personal and business spending, smart budgets, and AI that builds you a custom money tracker for <em>any</em> goal — debt, savings, investing, you name it. Ledgerly is the finance app that adapts to you.</p>
+
+    <form class="signup" id="heroForm" onsubmit="goToSurvey(event)">
+      <div class="field-row">
+        <input type="email" id="heroEmail" placeholder="you@email.com" required>
+        <button class="btn" type="submit">Get early access</button>
+      </div>
+      <p class="hint">Free during beta · No card required · We'll ask one quick question next.</p>
+    </form>
+
+    <div class="avatars">
+      <div class="stack"><span></span><span></span><span></span><span></span></div>
+      Join early members shaping what gets built next
+    </div>
+
+    <!-- APP MOCK -->
+    <div class="showcase">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="app">
+          <aside class="side">
+            <div class="logo">Ledgerly</div>
+            <div class="nav-item on"><span class="ic">⌂</span>Home</div>
+            <div class="nav-item"><span class="ic">▤</span>Ledger</div>
+            <div class="nav-item"><span class="ic">◷</span>Budget</div>
+            <div class="nav-item"><span class="ic">✦</span>AI</div>
+            <div class="nav-item"><span class="ic">◔</span>Analysis</div>
+            <div class="sec-label">Programs</div>
+            <div class="nav-item"><span class="ic">📈</span>Investing</div>
+            <div class="nav-item"><span class="ic">🎯</span>Savings goal</div>
+            <div class="nav-item"><span class="ic">❄️</span>Debt snowball</div>
+          </aside>
+          <div class="main">
+            <div class="greet">Thursday, June 18</div>
+            <div class="greet-big">Good evening, Samuel</div>
+            <div class="balance-card">
+              <div class="lab">June spending</div>
+              <div class="amt">$2,418</div>
+              <div class="meta">↓ 12% vs. May · $1,082 left in budget</div>
+            </div>
+            <div class="tiles">
+              <div class="tile"><div class="ic">💸</div><div class="t">Expenses</div></div>
+              <div class="tile"><div class="ic">◷</div><div class="t">Budget</div></div>
+              <div class="tile"><div class="ic">✦</div><div class="t">AI</div></div>
+              <div class="tile"><div class="ic">🧩</div><div class="t">Programs</div></div>
+            </div>
+            <div class="prog">
+              <div class="h">Savings goal · Emergency fund</div>
+              <div class="bar"><i style="width:68%"></i></div>
+              <div class="row"><span>$6,800 saved</span><span>Goal $10,000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="eyebrow">The problem</div>
+    <h2>Managing money shouldn't take<br>five apps and a spreadsheet.</h2>
+    <p class="lead">If any of these sound familiar, you're exactly who we're building for.</p>
+    <div class="problems">
+      <div class="pcard">
+        <div class="q">"Where did it all go?"</div>
+        <p>Spending is scattered across cards, accounts, and a side hustle. By month-end you have no idea what happened.</p>
+      </div>
+      <div class="pcard">
+        <div class="q">"Personal vs. business is a mess."</div>
+        <p>Freelance income, personal bills, a shared card — it all blends together and tax season becomes a nightmare.</p>
+      </div>
+      <div class="pcard">
+        <div class="q">"Budget apps don't fit my goal."</div>
+        <p>You want to crush debt, save for a trip, or model an investment — but every app forces the same rigid template.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" id="features" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="eyebrow">The idea</div>
+    <h2>One app that bends to your money,<br>not the other way around.</h2>
+    <div class="features">
+      <div class="fcard wide">
+        <span class="tag">The magic ✦</span>
+        <div class="ficon">🧩</div>
+        <h3>AI builds you a custom money program — in seconds</h3>
+        <p>Describe any goal in plain English: "help me pay off $4k in credit-card debt," "save $300/month for a trip," or "show me what $125/week invested could become." Ledgerly's AI instantly builds a tailored, interactive tracker with the right fields, calculations, and insights. No two people's finances look alike — your tools shouldn't either.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">💸</div>
+        <h3>Personal & business, side by side</h3>
+        <p>Track every expense and income stream in one ledger. Flag entries as personal or business and tag deductibles so the freelance/side-hustle math stays clean all year.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">◷</div>
+        <h3>Budgets that actually hold</h3>
+        <p>Set monthly limits per category and a savings goal. Watch progress in real time and get nudged before you blow past a line — not after.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">✦</div>
+        <h3>AI insights, not just charts</h3>
+        <p>A clear read on where you stand: what's trending, what's off track, and the single next action that moves you forward. In plain language.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">🏦</div>
+        <h3>Connect your bank</h3>
+        <p>Securely sync transactions so your ledger stays current without manual entry — or add things by hand in a tap. Your call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>From signup to clarity in minutes</h2>
+    <div class="steps">
+      <div class="step"><div class="n"></div><h4>Add your money</h4><p>Connect a bank or log entries by hand — personal and business together.</p></div>
+      <div class="step"><div class="n"></div><h4>Set a goal or budget</h4><p>Or just tell the AI what you're trying to do and let it build the tool for you.</p></div>
+      <div class="step"><div class="n"></div><h4>Stay on track</h4><p>Get a daily read on where you stand and the next move that matters.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SURVEY + EMAIL CTA -->
+<section class="cta" id="join">
+  <div class="wrap">
+    <div class="cta-box">
+      <div id="ctaForm">
+        <div class="eyebrow">Get early access</div>
+        <h2>Be first in — and help shape it.</h2>
+        <p class="lead">Drop your email to claim a beta spot. Then tell us your biggest money frustration so we build the right thing first.</p>
+
+        <form class="survey" id="surveyForm" onsubmit="submitAll(event)">
+          <label for="ctaEmail">Your email</label>
+          <div class="field-row" style="background:var(--card-2)">
+            <input type="email" id="ctaEmail" placeholder="you@email.com" required>
+          </div>
+
+          <label>What frustrates you most about managing money today? <span style="color:var(--muted-2)">(pick any)</span></label>
+          <div class="chips" id="chips">
+            <span class="chip" data-v="tracking">Tracking where money goes</span>
+            <span class="chip" data-v="business">Mixing personal & business</span>
+            <span class="chip" data-v="budgeting">Sticking to a budget</span>
+            <span class="chip" data-v="debt">Paying down debt</span>
+            <span class="chip" data-v="saving">Saving consistently</span>
+            <span class="chip" data-v="investing">Knowing how to invest</span>
+            <span class="chip" data-v="toomany">Too many apps / spreadsheets</span>
+          </div>
+
+          <label for="freeText">Anything else you wish your money app did? <span style="color:var(--muted-2)">(optional)</span></label>
+          <div class="field-row" style="background:var(--card-2)">
+            <input type="text" id="freeText" placeholder="In one sentence…">
+          </div>
+
+          <button class="btn" type="submit">Claim my early-access spot</button>
+        </form>
+      </div>
+
+      <div class="thanks" id="thanks">
+        <div class="check">✓</div>
+        <h3>You're on the list.</h3>
+        <p>Thanks — your spot is saved and your answers help decide what we build first. Keep an eye on your inbox.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot">L</span>Ledgerly</div>
+    <p>The finance app that adapts to you. · Early access 2026</p>
+    <p style="margin-top:8px;color:#54514c">This is an early-access page. We'll only email you about Ledgerly.</p>
+  </div>
+</footer>
+
+<script>
+  // chip selection
+  document.querySelectorAll('#chips .chip').forEach(c=>{
+    c.addEventListener('click',()=>c.classList.toggle('sel'));
+  });
+  // hero -> scroll to survey, prefill email
+  function goToSurvey(e){
+    e.preventDefault();
+    const v=document.getElementById('heroEmail').value;
+    if(v) document.getElementById('ctaEmail').value=v;
+    document.getElementById('join').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>document.getElementById('ctaEmail').focus(),600);
+  }
+  // final submit
+  function submitAll(e){
+    e.preventDefault();
+    const data={
+      email:document.getElementById('ctaEmail').value,
+      frustrations:[...document.querySelectorAll('#chips .chip.sel')].map(c=>c.dataset.v),
+      note:document.getElementById('freeText').value
+    };
+    console.log('Signup captured:',data); // swap for real backend on deploy
+    document.getElementById('ctaForm').style.display='none';
+    document.getElementById('thanks').style.display='block';
+    document.getElementById('thanks').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+</script>
+</body>
+</html>
