@@ -1,0 +1,87 @@
+[
+  {
+    "id": "L001",
+    "lesson": "Build round plates and rims as one rotate_extrude() profile; a union of coincident cylinders leaves a 4-face seam edge and a non-watertight STL.",
+    "tags": [
+      "enclosure",
+      "general",
+      "plate"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L002",
+    "lesson": "A part with features on both faces (boss below, hub above) cannot print flat: split the smaller feature into its own part (e.g. a spacer ring) instead of adding supports.",
+    "tags": [
+      "bearing",
+      "general",
+      "hub"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L003",
+    "lesson": "Arched clamps/straps print on their side as a 2-D profile; standing them up makes the crown a 90 deg overhang.",
+    "tags": [
+      "clamp",
+      "motor",
+      "strap"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L004",
+    "lesson": "Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm.",
+    "tags": [
+      "enclosure",
+      "gear",
+      "general",
+      "pocket"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L005",
+    "lesson": "Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear.",
+    "tags": [
+      "bearing",
+      "gear",
+      "turntable"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L006",
+    "lesson": "Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length.",
+    "tags": [
+      "enclosure",
+      "motor",
+      "turntable"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L007",
+    "lesson": "Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap.",
+    "tags": [
+      "enclosure",
+      "general",
+      "lid"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  }
+]

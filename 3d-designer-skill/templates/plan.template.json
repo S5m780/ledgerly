@@ -1,0 +1,15 @@
+{
+  "name": "", "model": "model.scad", "version": 1,
+  "goal": "",
+  "requirements": [],
+  "constraints": {"print_bed_mm": [220, 220, 250], "material": "PETG", "nozzle_mm": 0.4, "layer_mm": 0.2, "min_wall_mm": 1.6},
+  "hardware": [],
+  "mechanism": {},
+  "parts": [{"name": "body", "printable": true, "orientation": "flat"}],
+  "steps": [{"step": "layout", "done_when": ""}],
+  "checks": [],
+  "views": [{"name": "assembly", "part": "assembly", "camera": "0,0,0,55,0,25,300"}],
+  "exports": ["stl", "3mf", "png"],
+  "applied_lessons": [],
+  "open_questions": []
+}

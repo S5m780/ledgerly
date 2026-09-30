@@ -1,0 +1,4 @@
+{"ts": 1790802231, "project": "whatnot-turntable", "iterations": 1, "phase_seconds": {"plan": 0.0, "build": 27.05, "inspect": 0.78, "export": 28.35}, "openscad_seconds": 27.05, "parts": 10, "failures": 0, "warnings": 0, "passed": true}
+{"ts": 1790802488, "project": "whatnot-turntable", "iterations": 1, "phase_seconds": {"plan": 0.0, "build": 123.01, "inspect": 0.77}, "openscad_seconds": 122.99000000000001, "parts": 11, "failures": 1, "warnings": 2, "passed": false}
+{"ts": 1790802892, "project": "whatnot-turntable", "iterations": 1, "phase_seconds": {"plan": 0.0, "build": 131.0, "inspect": 0.65, "export": 52.53}, "openscad_seconds": 130.98999999999998, "parts": 11, "failures": 0, "warnings": 2, "passed": true}
+{"ts": 1790803092, "project": "whatnot-turntable", "iterations": 1, "phase_seconds": {"plan": 0.0, "build": 124.82, "inspect": 0.77, "export": 51.28}, "openscad_seconds": 124.81, "parts": 11, "failures": 0, "warnings": 2, "passed": true}
