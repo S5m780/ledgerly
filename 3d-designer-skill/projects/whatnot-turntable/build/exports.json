@@ -48,7 +48,7 @@
   "plate.svg": true,
   "plate_half_b.svg": true,
   "motor_strap.svg": true,
-  "card_easel.svg": true,
+  "card_easel.svg": false,
   "assembly.png": true,
   "exploded.png": true,
   "base_top.png": true,

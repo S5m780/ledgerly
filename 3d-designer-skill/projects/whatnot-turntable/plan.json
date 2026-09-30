@@ -217,12 +217,24 @@
       "lesson": "Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear."
     },
     {
+      "id": "L010",
+      "lesson": "Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking."
+    },
+    {
       "id": "L004",
       "lesson": "Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm."
     },
     {
       "id": "L006",
       "lesson": "Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length."
+    },
+    {
+      "id": "L008",
+      "lesson": "Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position."
+    },
+    {
+      "id": "L011",
+      "lesson": "Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed."
     },
     {
       "id": "L001",
@@ -235,6 +247,10 @@
     {
       "id": "L007",
       "lesson": "Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap."
+    },
+    {
+      "id": "L009",
+      "lesson": "When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it."
     }
   ],
   "open_questions": [

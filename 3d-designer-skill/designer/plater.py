@@ -55,6 +55,8 @@ def pack(project: Project, copies: dict[str, int] | None = None) -> dict:
     if plate:
         plates.append(plate)
     out_dir = project.build_dir / "plates"; out_dir.mkdir(exist_ok=True)
+    for old in out_dir.glob("plate_*.3mf"):   # stale plates from a previous, larger packing
+        old.unlink()
     import trimesh
     summary = {"printer": printer, "plates": []}
     for i, pl in enumerate(plates, 1):

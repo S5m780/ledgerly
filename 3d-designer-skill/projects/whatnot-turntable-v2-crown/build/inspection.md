@@ -8,9 +8,9 @@
 | pinion.stl | yes | 791 | [13.99, 13.99, 10.0] | 7% | — |
 | hub.stl | yes | 12594 | [50.0, 50.0, 17.15] | 0% | — |
 | spacer.stl | yes | 128 | [10.0, 10.0, 5.4] | 0% | — |
-| plate.stl | yes | 205421 | [210.0, 210.0, 7.5] | 3% | — |
+| plate.stl | yes | 234248 | [210.0, 210.0, 8.5] | 3% | — |
 | motor_strap.stl | yes | 545 | [8.0, 30.6, 2.4] | 0% | — |
-| card_easel.stl | yes | 29030 | [90.0, 34.0, 12.0] | 0% | — |
+| card_easel.stl | yes | 37406 | [96.0, 96.0, 27.0] | 1% | — |
 
 ## Design checks
 
@@ -25,11 +25,12 @@
 - ✅ `crown_hub_d > hex_corner` 
 - ✅ `pcb_top < panel_zc * 2` 
 - ✅ `plate_d <= 320` 
+- ✅ `total_height < 41` 
 
 ## Values echoed by the model
 
 - base_height = 26.15
-- total_height = 34.65
+- total_height = 35.65
 - plate_d = 210.0
 - base_d = 165.0
 - ratio = 3.5

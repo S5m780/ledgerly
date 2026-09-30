@@ -6,12 +6,12 @@
 | lid.stl | yes | 78354 | [180.0, 180.0, 9.0] | 0% | — |
 | gear.stl | yes | 32496 | [79.45, 79.49, 16.0] | 5% | — |
 | pinion.stl | yes | 3666 | [28.32, 28.44, 8.0] | 0% | — |
-| hub.stl | yes | 8944 | [50.0, 50.0, 12.0] | 0% | — |
+| hub.stl | yes | 9311 | [50.0, 50.0, 13.0] | 0% | — |
 | spacer.stl | yes | 183 | [12.0, 12.0, 3.0] | 0% | — |
-| plate.stl | yes | 204118 | [210.0, 210.0, 7.5] | 2% | — |
-| plate_half_b.stl | yes | 101548 | [104.85, 209.99, 7.5] | 2% | — |
+| plate.stl | yes | 232858 | [210.0, 210.0, 8.5] | 2% | — |
+| plate_half_b.stl | yes | 115894 | [104.85, 209.99, 8.5] | 2% | — |
 | motor_strap.stl | yes | 985 | [43.2, 14.9, 8.0] | 3% | — |
-| card_easel.stl | yes | 29030 | [90.0, 34.0, 12.0] | 0% | — |
+| card_easel.stl | yes | 35888 | [96.0, 96.0, 27.0] | 2% | — |
 
 ## Design checks
 
@@ -28,7 +28,7 @@
 ## Values echoed by the model
 
 - base_height = 42.4
-- total_height = 56.4
+- total_height = 57.4
 - plate_d = 210.0
 - base_d = 180.0
 - center_distance = 51.0
@@ -40,7 +40,7 @@
 - relief = True
 - rod_span_lo = 15.4
 - rod_span_hi = 55.4
-- hub_hex_top = 56.4
+- hub_hex_top = 57.4
 - motor_far_radius = 85.1072
 - inner_r = 87.6
 - ok = True

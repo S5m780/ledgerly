@@ -14,7 +14,7 @@ Prices are typical hobby-supplier prices (Amazon / AliExpress / eBay, 2026) and 
 | P6 | `gear` (51T) | 1 | 4 perimeters, 30 % infill. Bridges a 30 mm recess: enable "detect bridging perimeters" |
 | P7 | `pinion` (17T) | 1 | 5 perimeters, 60 % infill. The D-bore is a push fit on the motor shaft |
 | P8 | `motor_strap` | 1 | prints on its side (STL is already oriented) |
-| P9 | `card_easel` | 1+ | optional; print as many as you want cards displayed |
+| P9 | `card_easel` | 1 | centred single-slot stand for a sleeved card, 12° back-lean, drops into the plate recess |
 
 ## Electro-mechanical parts
 

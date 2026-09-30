@@ -38,7 +38,7 @@ Rebuild with `python -m designer run projects/whatnot-turntable` and the checks 
 - Switch **off**, knob to minimum, plug in 12 V.
 - Switch **on**, raise the knob until it turns. Direction wrong? Swap the motor wires.
 - Mark the knob position for your favourite 3 RPM (about 20 s per turn) with a dot.
-- Place the **card easel (P9)** anywhere on the plate; two slots take a toploader (front) or a sleeved card (rear).
+- Drop the **card easel (P9)** into the shallow round recess in the middle of the plate; it self-centres so the card turns on the axis. The single slot takes a sleeved card (or a toploader), sunk 20 mm and leaning 12° back toward the camera; the low front lip has a finger notch.
 
 ## Two-piece plate (printers under 210 mm)
 Set `plate_sections = 2`, print `plate` and `plate_half_b`. Push four 3 mm filament or steel pins into the holes along the straight edge, CA-glue the edge, clamp flat on a table for 10 minutes. The hub disc spans the seam and stiffens it.

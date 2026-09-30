@@ -17,6 +17,7 @@
 // ============================================================================
 include <../../lib/gears.scad>
 include <../../lib/hardware.scad>
+include <../../lib/accessories.scad>
 
 part = "assembly";
 ghost_hardware = true;
@@ -24,9 +25,11 @@ interference_pair = -1;
 
 // ---------------- user-facing parameters ----------------
 plate_d     = 210;    // H2S bed is 350 x 320: anything up to ~300 prints in one piece
-plate_t     = 6;
+plate_t     = 7;      // 7 so the 0.8 mm easel recess still leaves 3.2 mm over the hub pocket
 plate_lip_h = 1.5;
 plate_lip_w = 4;
+easel_base_d = 96;    // card easel base; the plate top gets a 0.8 mm recess so it self-centres
+easel_recess = 0.8;
 
 base_d  = 165;           // 165 lets base + lid share one H2S plate
 wall    = 2.4;
@@ -234,6 +237,7 @@ module plate() {
     difference() {
         translate([0, 0, plate_z0]) rotate_extrude($fn = 180) polygon(profile);
         translate([0, 0, plate_z0 - 1]) cylinder(d = flange_d + fit_loose, h = flange_t + 1);
+        if (easel_recess > 0) translate([0, 0, plate_z1 - easel_recess]) cylinder(d = easel_base_d + 0.4, h = 5, $fn = 120);
         for (a = [0, 120, 240]) rotate(a) translate([20, 0, plate_z0 - 1]) {
             cylinder(d = m3_clear_d, h = 20, $fn = 20);
             translate([0, 0, 1 + plate_t - 1.8]) cylinder(d1 = m3_clear_d, d2 = m3_head_d, h = 1.81, $fn = 24);
@@ -241,16 +245,9 @@ module plate() {
     }
 }
 
-module card_easel() {
-    w = 90; d = 34; h = 12; tilt = 15;
-    difference() {
-        hull() { translate([-w / 2, -d / 2, 0]) cube([w, d, 2]); translate([-w / 2, -d / 2 + 6, 0]) cube([w, d - 6, h]); }
-        translate([0, 2, h]) rotate([tilt, 0, 0]) translate([-42, -2.2, -9]) cube([84, 4.4, 20]);
-        translate([0, -8, h]) rotate([tilt, 0, 0]) translate([-42, -1.1, -9]) cube([84, 2.2, 20]);
-    }
-}
-
 // ============================================================================
+// a 66.5 x 91 sleeved card standing in the easel, for the renders and the interference view
+module sleeved_card() { translate([0, 0, plate_z1 - easel_recess + 2 + 3 + 0.5]) rotate([12, 0, 0]) translate([-66.5 / 2, -0.4, 0]) cube([66.5, 0.8, 91]); }
 module hardware_solid() {
     color("DimGray") translate(motor_pos) n20();
     color("Silver") translate([0, 0, brgA_z0]) bearing608();
@@ -268,7 +265,8 @@ module assembly(e = 0) {
     color("LightSteelBlue", 0.85) translate([0, 0, e]) lid();
     color("Tomato") translate([0, 0, e * 1.4]) hub();
     color("WhiteSmoke") translate([0, 0, e * 1.8]) plate();
-    color("WhiteSmoke") translate([0, 40, plate_z1 + plate_lip_h + e * 2.2]) card_easel();
+    color("WhiteSmoke") translate([0, 0, plate_z1 - easel_recess + e * 2.2]) card_easel(base_d = easel_base_d);
+    if (!ghost_hardware) color("Gold", 0.9) sleeved_card();
     hardware_ghosts();
 }
 
@@ -279,7 +277,7 @@ else if (part == "gears") { crown(); pinion(); }
 else if (part == "interference") {
     pairs = [["crown/pinion", 0], ["crown/base", 1], ["pinion/base", 2], ["pinion/lid", 3], ["crown/hub", 4],
              ["hub/lid", 5], ["base/lid", 6], ["motor/base", 7], ["motor/lid", 8], ["spacer/crown", 9],
-             ["spacer/hub", 10], ["crown/lid", 11], ["hub/plate_screwspace", 12], ["strap/lid", 13], ["bearingB/hub", 14]];
+             ["spacer/hub", 10], ["crown/lid", 11], ["hub/plate_screwspace", 12], ["strap/lid", 13], ["bearingB/hub", 14], ["card/easel", 15], ["easel/plate", 16]];
     for (i = [0 : len(pairs) - 1]) if (interference_pair < 0 || interference_pair == i) {
         echo(str("INTERFERENCE pair ", i, " = ", pairs[i][0]));
         if (i == 0) intersection() { crown(); pinion(); }
@@ -297,6 +295,8 @@ else if (part == "interference") {
         if (i == 12) intersection() { hub(); translate([0, 0, brgA_z0]) bearing608(); }
         if (i == 13) intersection() { motor_strap(); lid(); }
         if (i == 14) intersection() { translate([0, 0, brgB_z0]) bearing608(); hub(); }
+        if (i == 15) intersection() { sleeved_card(); translate([0, 0, plate_z1 - easel_recess]) card_easel(base_d = easel_base_d); }
+        if (i == 16) intersection() { plate(); translate([0, 0, plate_z1 - easel_recess]) card_easel(base_d = easel_base_d); }
     }
 }
 else if (part == "base") base();
@@ -307,7 +307,8 @@ else if (part == "hub") translate([0, 0, flange_z0 + flange_t]) mirror([0, 0, 1]
 else if (part == "spacer") translate([0, 0, -spacer_z0]) spacer();
 else if (part == "plate") translate([0, 0, -plate_z0]) plate();
 else if (part == "motor_strap") translate([0, 0, -(motor_axis_z + n20_h / 2)]) translate([-(cradle_x0 + cradle_x1) / 2, 0, 0]) motor_strap();
-else if (part == "card_easel") card_easel();
+else if (part == "card_easel") card_easel(base_d = easel_base_d);
+else if (part == "easel_view") { card_easel(base_d = easel_base_d); translate([0, 0, -(plate_z1 - easel_recess)]) sleeved_card(); }
 
 // pinion laid flat for printing: hub side down
 module pinion_flat() {

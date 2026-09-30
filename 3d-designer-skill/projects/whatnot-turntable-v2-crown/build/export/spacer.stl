@@ -2169,20 +2169,6 @@ solid OpenSCAD_Model
       vertex -2.0875 3.61566 0
     endloop
   endfacet
-  facet normal 0.0654073 -0.997859 0
-    outer loop
-      vertex -0.544947 4.13928 0
-      vertex 0 4.175 5.4
-      vertex -0.544947 4.13928 5.4
-    endloop
-  endfacet
-  facet normal 0.0654073 -0.997859 0
-    outer loop
-      vertex 0 4.175 5.4
-      vertex -0.544947 4.13928 0
-      vertex 0 4.175 0
-    endloop
-  endfacet
   facet normal -0.997859 0.0654073 0
     outer loop
       vertex 4.13928 -0.544947 0
@@ -2265,6 +2251,20 @@ solid OpenSCAD_Model
       vertex -3.8572 -1.5977 0
       vertex -3.61566 -2.0875 5.4
       vertex -3.61566 -2.0875 0
+    endloop
+  endfacet
+  facet normal 0.659348 -0.751838 0
+    outer loop
+      vertex -2.95217 2.95217 0
+      vertex -2.54158 3.31225 5.4
+      vertex -2.95217 2.95217 5.4
+    endloop
+  endfacet
+  facet normal 0.659348 -0.751838 0
+    outer loop
+      vertex -2.54158 3.31225 5.4
+      vertex -2.95217 2.95217 0
+      vertex -2.54158 3.31225 0
     endloop
   endfacet
   facet normal -0.946931 0.321436 0
@@ -2575,6 +2575,20 @@ solid OpenSCAD_Model
       vertex -3.8572 1.5977 0
     endloop
   endfacet
+  facet normal 0.0654073 -0.997859 0
+    outer loop
+      vertex -0.544947 4.13928 0
+      vertex 0 4.175 5.4
+      vertex -0.544947 4.13928 5.4
+    endloop
+  endfacet
+  facet normal 0.0654073 -0.997859 0
+    outer loop
+      vertex 0 4.175 5.4
+      vertex -0.544947 4.13928 0
+      vertex 0 4.175 0
+    endloop
+  endfacet
   facet normal 0.321436 0.946931 -0
     outer loop
       vertex -1.08057 -4.03274 0
@@ -2587,20 +2601,6 @@ solid OpenSCAD_Model
       vertex -1.5977 -3.8572 5.4
       vertex -1.08057 -4.03274 0
       vertex -1.5977 -3.8572 0
-    endloop
-  endfacet
-  facet normal 0.659348 -0.751838 0
-    outer loop
-      vertex -2.95217 2.95217 0
-      vertex -2.54158 3.31225 5.4
-      vertex -2.95217 2.95217 5.4
-    endloop
-  endfacet
-  facet normal 0.659348 -0.751838 0
-    outer loop
-      vertex -2.54158 3.31225 5.4
-      vertex -2.95217 2.95217 0
-      vertex -2.54158 3.31225 0
     endloop
   endfacet
   facet normal -0.0654073 -0.997859 0

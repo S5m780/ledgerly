@@ -64,3 +64,11 @@ bevel pair, so the base can be thinner.
 Keep the sideways-motor idea, do it with a crown gear and a fixed axle, and accept the two real costs
 (not self-locking, a little more gear noise). The result is 16 mm lower than v1 at the base, 21 mm lower
 overall, cheaper (N20 ≈ $4 vs JGY-370 ≈ $12) and simpler to assemble.
+
+## Card easel (revision after feedback)
+One slot, on the rotation axis, so the card turns about its own centre instead of orbiting. The easel's
+Ø96 base drops into a 0.8 mm recess in the plate top, so it cannot creep off-centre while spinning. Slot
+3.2 mm wide for a sleeved card (a toploader also fits), 20 mm deep so a knock does not tip it, and the slot
+and back-rest lean 12° back so a camera in front sees the face square-on rather than foreshortened. The
+front lip is only 10 mm with a finger notch, so the artwork stays visible and the card is easy to pull.
+Plate thickness went 6 → 7 mm to keep 3 mm of material between the recess and the hub pocket.

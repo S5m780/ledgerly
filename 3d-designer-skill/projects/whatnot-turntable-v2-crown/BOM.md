@@ -11,7 +11,7 @@
 | spacer | 1 | 100 %; print 2 |
 | plate Ø210 | 1 | PETG or PLA, 15 % gyroid, 3 walls; textured PEI gives a nice top finish if you flip it |
 | motor_strap | 1 | flat |
-| card_easel | 1+ | optional |
+| card_easel | 1 | centred single-slot stand for a sleeved card, 12° back-lean; PLA is fine |
 
 ## Hardware
 | Item | Qty | Spec | ~Price |

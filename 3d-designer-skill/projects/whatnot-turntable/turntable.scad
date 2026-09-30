@@ -15,6 +15,7 @@
 // ============================================================================
 include <../../lib/gears.scad>
 include <../../lib/hardware.scad>
+include <../../lib/accessories.scad>
 
 part = "assembly";
 ghost_hardware = true;
@@ -22,10 +23,12 @@ interference_pair = -1;  // -1 = all pairs in the "interference" view, n = only 
 
 // ---------------- user-facing parameters ----------------
 plate_d        = 210;   // display plate diameter (210 fits a 220 mm bed with a skirt)
-plate_t        = 6;     // plate thickness
+plate_t        = 7;     // plate thickness (0.8 mm easel recess on top, 3 mm hub pocket below)
 plate_lip_h    = 1.5;   // raised rim height (0 = flat plate)
 plate_lip_w    = 4;     // raised rim width
-plate_sections = 1;     // 1 = one piece, 2 = two halves (for small printers), glued + pinned
+plate_sections = 1;
+easel_base_d   = 96;    // card easel base; plate top gets a 0.8 mm centring recess
+easel_recess   = 0.8;     // 1 = one piece, 2 = two halves (for small printers), glued + pinned
 
 base_d   = 180;         // base diameter
 wall     = 2.4;         // base wall thickness
@@ -278,6 +281,7 @@ module plate_body() {
         // hex hole for the hub boss + underside pocket for the hub disc
         translate([0, 0, plate_z0 - 1]) cylinder(d = (hub_hex_af + fit_loose) / cos(30), h = 20, $fn = 6);
         translate([0, 0, plate_z0 - 1]) cylinder(d = hub_disc_d + fit_loose, h = hub_disc_t + 1);
+        if (easel_recess > 0) translate([0, 0, plate_z1 - easel_recess]) cylinder(d = easel_base_d + 0.4, h = 5, $fn = 120);
         for (a = [0, 120, 240]) rotate(a) translate([18, 0, plate_z0 - 1]) {
             cylinder(d = m3_clear_d, h = 20, $fn = 20);
             translate([0, 0, 1 + plate_t - 1.8]) cylinder(d1 = m3_clear_d, d2 = m3_head_d, h = 1.81, $fn = 24);
@@ -297,16 +301,6 @@ module plate(half = 0) {
             for (y = [-plate_d / 2 + 20, -40, 40, plate_d / 2 - 20])
                 translate([0, y, plate_z0 + plate_t / 2]) rotate([0, 90, 0]) cylinder(d = 3.2, h = 24, center = true, $fn = 20);
         }
-    }
-}
-
-module card_easel() {
-    // sits on the plate; holds a 3x4" toploader (77 x 102 x ~2 mm) tilted 15 degrees back
-    w = 90; d = 34; h = 12; tilt = 15;
-    difference() {
-        hull() { translate([-w / 2, -d / 2, 0]) cube([w, d, 2]); translate([-w / 2, -d / 2 + 6, 0]) cube([w, d - 6, h]); }
-        translate([0, 2, h]) rotate([tilt, 0, 0]) translate([-42, -2.2, -9]) cube([84, 4.4, 20]);
-        translate([0, -8, h]) rotate([tilt, 0, 0]) translate([-42, -1.1, -9]) cube([84, 2.2, 20]);   // second slot for a raw sleeve
     }
 }
 
@@ -333,7 +327,7 @@ module assembly(explode = 0) {
     color("Tomato") translate([0, 0, e * 1.4]) spacer();
     color("Tomato") translate([0, 0, e * 1.6]) hub();
     color("WhiteSmoke") translate([0, 0, e * 2]) { plate(0); if (plate_sections == 2) plate(1); }
-    color("WhiteSmoke") translate([0, 40, plate_z1 + plate_lip_h + e * 2.4]) card_easel();
+    color("WhiteSmoke") translate([0, 0, plate_z1 - easel_recess + e * 2.4]) card_easel(base_d = easel_base_d, center_hole = hub_hex_af / cos(30) + 1.5);
     hardware_ghosts();
 }
 
@@ -372,4 +366,4 @@ else if (part == "spacer") translate([0, 0, -topbrg_z1]) spacer();
 else if (part == "plate") translate([0, 0, -plate_z0]) plate(0);
 else if (part == "plate_half_b") translate([0, 0, -plate_z0]) plate(1);
 else if (part == "motor_strap") rotate([90, 0, 0]) translate([0, 4, 0]) motor_strap();   // on its side: arch prints as a 2-D profile
-else if (part == "card_easel") card_easel();
+else if (part == "card_easel") card_easel(base_d = easel_base_d, center_hole = hub_hex_af / cos(30) + 1.5);

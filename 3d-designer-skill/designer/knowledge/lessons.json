@@ -8,7 +8,7 @@
       "plate"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.948,
+    "weight": 2.357,
     "added": "2026-09-30"
   },
   {
@@ -20,7 +20,7 @@
       "hub"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.948,
+    "weight": 2.357,
     "added": "2026-09-30"
   },
   {
@@ -32,7 +32,7 @@
       "strap"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.61,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -45,7 +45,7 @@
       "pocket"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.948,
+    "weight": 2.357,
     "added": "2026-09-30"
   },
   {
@@ -57,7 +57,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.948,
+    "weight": 2.357,
     "added": "2026-09-30"
   },
   {
@@ -69,7 +69,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.948,
+    "weight": 2.357,
     "added": "2026-09-30"
   },
   {
@@ -81,7 +81,7 @@
       "lid"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.61,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -95,7 +95,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable-v2-crown",
-    "weight": 1.0,
+    "weight": 1.21,
     "added": "2026-09-30"
   },
   {
@@ -106,7 +106,7 @@
       "gear"
     ],
     "source": "whatnot-turntable-v2-crown",
-    "weight": 1.0,
+    "weight": 1.21,
     "added": "2026-09-30"
   },
   {
@@ -119,7 +119,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable-v2-crown",
-    "weight": 1.0,
+    "weight": 1.21,
     "added": "2026-09-30"
   },
   {
@@ -129,6 +129,31 @@
       "enclosure",
       "gear",
       "general"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L012",
+    "lesson": "Anything displayed on a turntable goes on the rotation axis with a positive locating recess in the plate; an off-axis stand orbits and reads badly on camera.",
+    "tags": [
+      "display",
+      "general",
+      "plate",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L013",
+    "lesson": "Card stands for camera work: lean the slot 10-15 deg back, keep the front lip under ~12 mm with a finger notch, and size the slot for the sleeve (3 mm), not the bare card.",
+    "tags": [
+      "card",
+      "display",
+      "easel"
     ],
     "source": "whatnot-turntable-v2-crown",
     "weight": 1.0,

@@ -98,14 +98,14 @@
     },
     {
       "file": "plate.stl",
-      "faces": 3032,
+      "faces": 3512,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 205421.3,
+      "volume_mm3": 234248.5,
       "extents_mm": [
         210.0,
         210.0,
-        7.5
+        8.5
       ],
       "components": 1,
       "issues": [],
@@ -128,18 +128,18 @@
     },
     {
       "file": "card_easel.stl",
-      "faces": 48,
+      "faces": 904,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 29030.4,
+      "volume_mm3": 37405.6,
       "extents_mm": [
-        90.0,
-        34.0,
-        12.0
+        96.0,
+        96.0,
+        27.0
       ],
       "components": 1,
       "issues": [],
-      "overhang_area_fraction": 0.0
+      "overhang_area_fraction": 0.007
     }
   ],
   "design_checks": [
@@ -197,6 +197,11 @@
       "expr": "plate_d <= 320",
       "ok": true,
       "error": ""
+    },
+    {
+      "expr": "total_height < 41",
+      "ok": true,
+      "error": ""
     }
   ],
   "failures": [],
@@ -207,7 +212,7 @@
   "ok": true,
   "check_values": {
     "base_height": 26.15,
-    "total_height": 34.65,
+    "total_height": 35.65,
     "plate_d": 210.0,
     "base_d": 165.0,
     "ratio": 3.5,

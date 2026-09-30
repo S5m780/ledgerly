@@ -5,7 +5,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/base.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 12.56,
+      "seconds": 12.3,
       "warnings": [],
       "empty": false
     },
@@ -13,7 +13,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/lid.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 4.68,
+      "seconds": 4.73,
       "warnings": [],
       "empty": false
     },
@@ -21,7 +21,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/crown.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 2.97,
+      "seconds": 2.66,
       "warnings": [],
       "empty": false
     },
@@ -29,7 +29,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/pinion.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 3.61,
+      "seconds": 3.1,
       "warnings": [],
       "empty": false
     },
@@ -37,7 +37,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/hub.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 1.0,
+      "seconds": 0.91,
       "warnings": [],
       "empty": false
     },
@@ -53,7 +53,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/plate.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 1.43,
+      "seconds": 1.87,
       "warnings": [],
       "empty": false
     },
@@ -61,7 +61,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/motor_strap.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 0.11,
+      "seconds": 0.1,
       "warnings": [],
       "empty": false
     },
@@ -69,7 +69,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/card_easel.stl",
       "must_be_empty": false,
       "ok": true,
-      "seconds": 0.03,
+      "seconds": 0.23,
       "warnings": [],
       "empty": false
     },
@@ -77,7 +77,7 @@
       "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/interference.stl",
       "must_be_empty": true,
       "ok": true,
-      "seconds": 42.5,
+      "seconds": 44.4,
       "warnings": [
         "WARNING: Object may not be a valid 2-manifold and may need repair!",
         "EXPORT-WARNING: Exported object may not be a valid 2-manifold and may need repair"
@@ -87,7 +87,7 @@
   },
   "checks": {
     "base_height": 26.15,
-    "total_height": 34.65,
+    "total_height": 35.65,
     "plate_d": 210.0,
     "base_d": 165.0,
     "ratio": 3.5,
@@ -112,5 +112,5 @@
     "interference: EXPORT-WARNING: Exported object may not be a valid 2-manifold and may need repair"
   ],
   "ok": true,
-  "total_seconds": 69.01
+  "total_seconds": 70.42
 }

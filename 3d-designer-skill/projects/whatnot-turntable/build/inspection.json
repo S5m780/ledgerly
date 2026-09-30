@@ -68,11 +68,11 @@
       "faces": 952,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 8943.7,
+      "volume_mm3": 9310.9,
       "extents_mm": [
         50.0,
         50.0,
-        12.0
+        13.0
       ],
       "components": 1,
       "issues": [],
@@ -95,14 +95,14 @@
     },
     {
       "file": "plate.stl",
-      "faces": 3060,
+      "faces": 3540,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 204117.7,
+      "volume_mm3": 232857.9,
       "extents_mm": [
         210.0,
         210.0,
-        7.5
+        8.5
       ],
       "components": 1,
       "issues": [],
@@ -110,14 +110,14 @@
     },
     {
       "file": "plate_half_b.stl",
-      "faces": 1730,
+      "faces": 1974,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 101548.5,
+      "volume_mm3": 115893.6,
       "extents_mm": [
         104.85,
         209.99,
-        7.5
+        8.5
       ],
       "components": 1,
       "issues": [],
@@ -143,18 +143,18 @@
     },
     {
       "file": "card_easel.stl",
-      "faces": 48,
+      "faces": 1120,
       "watertight": true,
       "winding_consistent": true,
-      "volume_mm3": 29030.4,
+      "volume_mm3": 35888.4,
       "extents_mm": [
-        90.0,
-        34.0,
-        12.0
+        96.0,
+        96.0,
+        27.0
       ],
       "components": 1,
       "issues": [],
-      "overhang_area_fraction": 0.0
+      "overhang_area_fraction": 0.024
     }
   ],
   "design_checks": [
@@ -212,7 +212,7 @@
   "ok": true,
   "check_values": {
     "base_height": 42.4,
-    "total_height": 56.4,
+    "total_height": 57.4,
     "plate_d": 210.0,
     "base_d": 180.0,
     "center_distance": 51.0,
@@ -224,7 +224,7 @@
     "relief": true,
     "rod_span_lo": 15.4,
     "rod_span_hi": 55.4,
-    "hub_hex_top": 56.4,
+    "hub_hex_top": 57.4,
     "motor_far_radius": 85.1072,
     "inner_r": 87.6,
     "ok": true,

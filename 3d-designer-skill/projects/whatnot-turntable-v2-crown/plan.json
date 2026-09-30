@@ -182,7 +182,8 @@
     "hub_wall >= 2.5",
     "crown_hub_d > hex_corner",
     "pcb_top < panel_zc * 2",
-    "plate_d <= 320"
+    "plate_d <= 320",
+    "total_height < 41"
   ],
   "views": [
     {
@@ -212,6 +213,11 @@
       "name": "gears",
       "part": "gears",
       "camera": "20,0,12,55,0,30,120"
+    },
+    {
+      "name": "easel",
+      "part": "easel_view",
+      "camera": "0,0,35,70,0,25,260"
     }
   ],
   "printer": {

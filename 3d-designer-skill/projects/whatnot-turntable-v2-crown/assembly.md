@@ -26,3 +26,4 @@ numbers that move the pinion; set them in `lib/hardware.scad` and re-run `python
 9. **Plate + hub** down over the post: the hub bearing slides on, the hex socket drops over the crown's
    hex boss, the flange floats 1 mm above the lid. Done; lift straight up to remove for shipping.
 10. Rubber feet in the four recesses, plug in, switch on, set the knob.
+11. **Card easel** drops into the round recess in the middle of the plate and self-centres. Slide a sleeved card into the slot: it sinks 20 mm, leans 12° back toward the camera, and the front lip with the finger notch keeps the art visible.
