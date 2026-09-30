@@ -5,6 +5,7 @@
   python -m designer build <dir> [--part p ...]       compile parts with OpenSCAD
   python -m designer inspect <dir>                    mesh + design checks (exit 1 on failure)
   python -m designer export <dir> [--fmt stl 3mf ...] export formats
+  python -m designer plate <dir> [--copies part=N]    pack parts onto the printer bed -> build/plates/plate_N.3mf
   python -m designer run <dir> [--max-iter N]         plan+build+inspect (+export when it passes) + metrics
   python -m designer learn <dir> [--lesson ".." --tags a b]   record lessons / reinforce / tune defaults
   python -m designer stats                            what the learner knows
@@ -13,7 +14,7 @@ from __future__ import annotations
 import argparse, shutil, sys
 from pathlib import Path
 from .project import Project, ROOT, Timer
-from . import planner, builder, inspector, exporter, learner
+from . import planner, builder, inspector, exporter, learner, plater
 
 
 def cmd_new(a):
@@ -73,6 +74,11 @@ def cmd_run(a):
     sys.exit(0 if ok else 1)
 
 
+def cmd_plate(a):
+    copies = dict(kv.split("=") for kv in (a.copies or []))
+    plater.pack(Project(a.dir), {k: int(v) for k, v in copies.items()})
+
+
 def cmd_learn(a):
     p = Project(a.dir)
     if a.lesson:
@@ -96,6 +102,7 @@ def main(argv=None):
     s = sub.add_parser("inspect"); s.add_argument("dir"); s.set_defaults(f=cmd_inspect)
     s = sub.add_parser("export"); s.add_argument("dir"); s.add_argument("--fmt", nargs="*"); s.add_argument("--part", action="append"); s.set_defaults(f=cmd_export)
     s = sub.add_parser("run"); s.add_argument("dir"); s.add_argument("--max-iter", type=int, default=3); s.add_argument("--auto", action="store_true"); s.set_defaults(f=cmd_run)
+    s = sub.add_parser("plate"); s.add_argument("dir"); s.add_argument("--copies", nargs="*", help="part=N"); s.set_defaults(f=cmd_plate)
     s = sub.add_parser("learn"); s.add_argument("dir"); s.add_argument("--lesson"); s.add_argument("--tags", nargs="*"); s.set_defaults(f=cmd_learn)
     s = sub.add_parser("stats"); s.set_defaults(f=cmd_stats)
     a = ap.parse_args(argv)

@@ -8,7 +8,7 @@
       "plate"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.21,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -20,7 +20,7 @@
       "hub"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.21,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -32,7 +32,7 @@
       "strap"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.0,
+    "weight": 1.61,
     "added": "2026-09-30"
   },
   {
@@ -45,7 +45,7 @@
       "pocket"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.21,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -57,7 +57,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.21,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -69,7 +69,7 @@
       "turntable"
     ],
     "source": "whatnot-turntable",
-    "weight": 1.21,
+    "weight": 1.948,
     "added": "2026-09-30"
   },
   {
@@ -81,6 +81,56 @@
       "lid"
     ],
     "source": "whatnot-turntable",
+    "weight": 1.61,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L008",
+    "lesson": "Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position.",
+    "tags": [
+      "bevel",
+      "crown-gear",
+      "gear",
+      "general",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L009",
+    "lesson": "When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it.",
+    "tags": [
+      "crown-gear",
+      "gear"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L010",
+    "lesson": "Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking.",
+    "tags": [
+      "bearing",
+      "enclosure",
+      "general",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L011",
+    "lesson": "Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed.",
+    "tags": [
+      "enclosure",
+      "gear",
+      "general"
+    ],
+    "source": "whatnot-turntable-v2-crown",
     "weight": 1.0,
     "added": "2026-09-30"
   }

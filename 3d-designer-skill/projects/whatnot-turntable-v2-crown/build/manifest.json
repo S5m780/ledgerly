@@ -1,0 +1,116 @@
+{
+  "model": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/turntable_v2.scad",
+  "parts": {
+    "base": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/base.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 12.56,
+      "warnings": [],
+      "empty": false
+    },
+    "lid": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/lid.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 4.68,
+      "warnings": [],
+      "empty": false
+    },
+    "crown": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/crown.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 2.97,
+      "warnings": [],
+      "empty": false
+    },
+    "pinion": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/pinion.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 3.61,
+      "warnings": [],
+      "empty": false
+    },
+    "hub": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/hub.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 1.0,
+      "warnings": [],
+      "empty": false
+    },
+    "spacer": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/spacer.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 0.12,
+      "warnings": [],
+      "empty": false
+    },
+    "plate": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/plate.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 1.43,
+      "warnings": [],
+      "empty": false
+    },
+    "motor_strap": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/motor_strap.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 0.11,
+      "warnings": [],
+      "empty": false
+    },
+    "card_easel": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/card_easel.stl",
+      "must_be_empty": false,
+      "ok": true,
+      "seconds": 0.03,
+      "warnings": [],
+      "empty": false
+    },
+    "interference": {
+      "stl": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/interference.stl",
+      "must_be_empty": true,
+      "ok": true,
+      "seconds": 42.5,
+      "warnings": [
+        "WARNING: Object may not be a valid 2-manifold and may need repair!",
+        "EXPORT-WARNING: Exported object may not be a valid 2-manifold and may need repair"
+      ],
+      "empty": false
+    }
+  },
+  "checks": {
+    "base_height": 26.15,
+    "total_height": 34.65,
+    "plate_d": 210.0,
+    "base_d": 165.0,
+    "ratio": 3.5,
+    "crown_R": 21.0,
+    "motor_axis_z": 15.15,
+    "pinion_top": 22.15,
+    "motor_far_radius": 62.0,
+    "inner_r": 80.1,
+    "pcb_far_radius": 77.8091,
+    "crown_rim_gap": 2.0,
+    "bearing_span": 12.4,
+    "post_top": 23.8,
+    "hex_corner": 27.2509,
+    "crown_hub_d": 28.0,
+    "hub_wall": 3.14359,
+    "panel_zc": 11.775,
+    "panel_room": 18.75,
+    "pcb_top": 21.0
+  },
+  "warnings": [
+    "interference: WARNING: Object may not be a valid 2-manifold and may need repair!",
+    "interference: EXPORT-WARNING: Exported object may not be a valid 2-manifold and may need repair"
+  ],
+  "ok": true,
+  "total_seconds": 69.01
+}

@@ -1,0 +1,282 @@
+{
+  "name": "Whatnot turntable v2 - crown drive",
+  "model": "turntable_v2.scad",
+  "version": 2,
+  "goal": "Slimmest practical 12 V card turntable: N20 gearmotor lying flat, spur pinion into a printed crown gear on a fixed axle, two 608s stacked inside the rotating parts.",
+  "requirements": [
+    "Motor horizontal; right-angle stage = printed spur pinion + printed crown (face) gear on the vertical axis",
+    "Base height under 30 mm, overall under 40 mm with the plate",
+    "Plate 2\u20135 RPM adjustable from a panel knob; rocker switch spin / hold",
+    "Fixed axle: the plate and gear rotate on bearings, no printed face rubs under load",
+    "Every part prints flat without supports on the H2S (350 x 320 x 325 mm); plate in one piece",
+    "Assembly: no glue, no soldering except motor leads, one strap screw pair, six lid screws, three plate screws",
+    "Interference view compiles empty"
+  ],
+  "tags": [
+    "turntable",
+    "gear",
+    "crown-gear",
+    "bevel",
+    "motor",
+    "n20",
+    "12v",
+    "pwm",
+    "bearing",
+    "enclosure",
+    "display",
+    "lid",
+    "plate"
+  ],
+  "constraints": {
+    "print_bed_mm": [
+      350,
+      320,
+      325
+    ],
+    "printer": "Bambu Lab H2S",
+    "material": "PETG",
+    "nozzle_mm": 0.4,
+    "layer_mm": 0.2,
+    "min_wall_mm": 1.6
+  },
+  "hardware": [
+    {
+      "part": "GA12-N20 12 V gearmotor, 20 RPM (15 or 30 also work), 3 mm D-shaft",
+      "critical_dims": "12x10 body, gearbox 12 + can 15.5, shaft 3 D x 10",
+      "measure": true
+    },
+    {
+      "part": "608ZZ bearing x2",
+      "critical_dims": "22 OD x 8 ID x 7"
+    },
+    {
+      "part": "PWM DC speed controller 12 V >= 1 A with panel pot",
+      "critical_dims": "board <= 55x40, components <= 16 mm tall"
+    },
+    {
+      "part": "KCD1 rocker (mounted sideways)",
+      "critical_dims": "cutout 19.2 x 13.2"
+    },
+    {
+      "part": "DC-022B 5.5x2.1 panel jack",
+      "critical_dims": "12 mm hole"
+    }
+  ],
+  "mechanism": {
+    "train": "N20 (20 RPM) -> 12T pinion m1 -> 42T crown gear (3.5:1) -> hex coupling -> hub -> plate",
+    "plate_rpm_at_100pct": 5.7,
+    "plate_rpm_at_40pct": 2.3,
+    "axle": "fixed printed post d7.85 (or 8 mm steel rod); crown and hub each carry a 608 on it",
+    "load_path": "plate -> hub ledge -> hub 608 outer race -> inner race -> spacer tube -> crown 608 inner race -> floor ring -> base",
+    "torque_path": "crown hex boss -> hub hex socket -> 3 screws -> plate"
+  },
+  "parts": [
+    {
+      "name": "base",
+      "printable": true,
+      "orientation": "as modelled",
+      "material": "PETG",
+      "walls": 3,
+      "infill": "20%"
+    },
+    {
+      "name": "lid",
+      "printable": true,
+      "orientation": "top face down (selector flips)",
+      "material": "PETG"
+    },
+    {
+      "name": "crown",
+      "printable": true,
+      "orientation": "teeth up, bearing pocket at the bed",
+      "material": "PETG",
+      "walls": 4,
+      "infill": "40%"
+    },
+    {
+      "name": "pinion",
+      "printable": true,
+      "orientation": "hub down",
+      "material": "PETG",
+      "walls": 5,
+      "infill": "100%",
+      "copies": 2
+    },
+    {
+      "name": "hub",
+      "printable": true,
+      "orientation": "flange down, pockets open up (selector flips)",
+      "material": "PETG",
+      "walls": 4,
+      "infill": "50%"
+    },
+    {
+      "name": "spacer",
+      "printable": true,
+      "orientation": "flat",
+      "material": "PETG",
+      "infill": "100%",
+      "copies": 2
+    },
+    {
+      "name": "plate",
+      "printable": true,
+      "orientation": "top face up",
+      "material": "PETG or PLA",
+      "walls": 3,
+      "infill": "15%"
+    },
+    {
+      "name": "motor_strap",
+      "printable": true,
+      "orientation": "flat"
+    },
+    {
+      "name": "card_easel",
+      "printable": true,
+      "orientation": "flat"
+    },
+    {
+      "name": "assembly",
+      "printable": false
+    },
+    {
+      "name": "exploded",
+      "printable": false
+    },
+    {
+      "name": "interference",
+      "printable": false,
+      "must_be_empty": true
+    }
+  ],
+  "steps": [
+    {
+      "step": "stack-up",
+      "done_when": "base height < 30 and total < 40 (CHECK base_height, total_height)"
+    },
+    {
+      "step": "crown drive",
+      "done_when": "pinion axis at crown pitch plane + pinion pitch radius; crown/pinion interference empty"
+    },
+    {
+      "step": "axle & load path",
+      "done_when": "plate weight reaches the base through two 608 inner races and the spacer, never a printed face"
+    },
+    {
+      "step": "enclosure",
+      "done_when": "motor, PCB, panel parts inside inner_r; lid lip notched at bosses"
+    },
+    {
+      "step": "printability",
+      "done_when": "inspection passes; every part flat"
+    }
+  ],
+  "checks": [
+    "base_height < 30",
+    "total_height < 40",
+    "ratio >= 3 and ratio <= 4",
+    "motor_far_radius < inner_r - 1",
+    "pcb_far_radius < inner_r - 0.5",
+    "bearing_span >= 10",
+    "hub_wall >= 2.5",
+    "crown_hub_d > hex_corner",
+    "pcb_top < panel_zc * 2",
+    "plate_d <= 320"
+  ],
+  "views": [
+    {
+      "name": "assembly",
+      "part": "assembly",
+      "camera": "0,0,20,55,0,35,480"
+    },
+    {
+      "name": "exploded",
+      "part": "exploded",
+      "camera": "0,0,50,60,0,35,650"
+    },
+    {
+      "name": "section",
+      "part": "section",
+      "camera": "0,0,18,90,0,180,260",
+      "defines": {
+        "ghost_hardware": false
+      }
+    },
+    {
+      "name": "base_top",
+      "part": "base",
+      "camera": "0,0,15,0,0,0,380"
+    },
+    {
+      "name": "gears",
+      "part": "gears",
+      "camera": "20,0,12,55,0,30,120"
+    }
+  ],
+  "printer": {
+    "name": "Bambu Lab H2S",
+    "bed_mm": [
+      350,
+      320,
+      325
+    ],
+    "margin_mm": 5,
+    "gap_mm": 5
+  },
+  "exports": [
+    "stl",
+    "3mf",
+    "png"
+  ],
+  "applied_lessons": [
+    {
+      "id": "L008",
+      "lesson": "Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position."
+    },
+    {
+      "id": "L005",
+      "lesson": "Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear."
+    },
+    {
+      "id": "L006",
+      "lesson": "Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length."
+    },
+    {
+      "id": "L010",
+      "lesson": "Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking."
+    },
+    {
+      "id": "L001",
+      "lesson": "Build round plates and rims as one rotate_extrude() profile; a union of coincident cylinders leaves a 4-face seam edge and a non-watertight STL."
+    },
+    {
+      "id": "L004",
+      "lesson": "Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm."
+    },
+    {
+      "id": "L007",
+      "lesson": "Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap."
+    },
+    {
+      "id": "L009",
+      "lesson": "When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it."
+    },
+    {
+      "id": "L011",
+      "lesson": "Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed."
+    },
+    {
+      "id": "L002",
+      "lesson": "A part with features on both faces (boss below, hub above) cannot print flat: split the smaller feature into its own part (e.g. a spacer ring) instead of adding supports."
+    },
+    {
+      "id": "L003",
+      "lesson": "Arched clamps/straps print on their side as a 2-D profile; standing them up makes the crown a 90 deg overhang."
+    }
+  ],
+  "open_questions": [
+    "Measure the N20: gearbox length varies with ratio (9-12 mm); set n20_gb_len.",
+    "PWM board must be under 16 mm tall (2.4 floor + 1 tape + 1.6 PCB + 16 = 21 < lid 23)."
+  ]
+}

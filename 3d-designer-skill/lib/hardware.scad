@@ -43,3 +43,18 @@ pot_hole_d = 7.2;          // 6 mm shaft panel potentiometer (M7 bushing)
 pot_key_w  = 3;            // anti-rotation tab slot
 jack_hole_d = 12;          // DC-022B 5.5x2.1 barrel jack (M11 thread -> 12 mm hole; check yours)
 pcb_bay = [60, 45, 18];    // generic PWM module bay (L x W x component height)
+
+// ---------- GA12-N20 micro gearmotor (12 V versions: 10/15/20/30 RPM), 3 mm D-shaft ----------
+// Orientation: output shaft along -X from the gearbox face at x = 0, motor body extends +X.
+// Body cross-section 12 (Y) x 10 (Z), axis at the origin.  Verify against your motor.
+n20_w = 12; n20_h = 10;
+n20_gb_len = 12;      // gearbox length (9 mm for ratios <= 1:100, ~12 mm for 1:298 .. 1:1000)
+n20_body_len = 15.5;  // motor can
+n20_term_len = 3;     // rear terminals
+n20_shaft_d = 3; n20_shaft_flat = 2.5; n20_shaft_len = 10;
+n20_len = n20_gb_len + n20_body_len;
+module n20(clearance = 0) {
+    c = clearance;
+    translate([-c, -n20_w / 2 - c, -n20_h / 2 - c]) cube([n20_len + n20_term_len + 2 * c, n20_w + 2 * c, n20_h + 2 * c]);
+    rotate([0, -90, 0]) cylinder(d = n20_shaft_d, h = n20_shaft_len, $fn = 24);
+}

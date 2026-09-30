@@ -23,3 +23,11 @@ the dependency footprint small.
 "views": [{"name": "assembly", "part": "assembly", "camera": "0,0,25,55,0,35,520"}]
 ```
 `camera` is OpenSCAD's `--camera=tx,ty,tz,rotx,roty,rotz,dist`.
+
+## Printer plates
+`python -m designer plate <project> [--copies pinion=2]` reads `plan.json["printer"]`
+(`{"name": "Bambu Lab H2S", "bed_mm": [350, 320, 325], "margin_mm": 6, "gap_mm": 8}`), packs every printable
+part onto as many plates as needed (largest first, shelf packing) and writes `build/plates/plate_N.3mf`
+plus `plates.json`. Each 3MF is a plain multi-object file: Bambu Studio, OrcaSlicer, PrusaSlicer and Cura
+open it with the objects already positioned. Slicer profiles (walls, infill per object) are not embedded —
+see the project's `PRINT_H2S.md` for the per-part settings.

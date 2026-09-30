@@ -15,12 +15,16 @@ TRIMESH_FORMATS = {"obj", "ply", "glb", "gltf", "3mf", "stl"}
 FLAT_FORMATS = {"dxf", "svg"}
 
 
-def _png(model: Path, out: Path, part: str, camera: str, size="1200,900") -> dict:
+def _png(model: Path, out: Path, part: str, camera: str, size="1200,900", defines: dict | None = None) -> dict:
     extra = [f"--camera={camera}", "--projection=o", f"--imgsize={size}", "--colorscheme=Tomorrow", "--autocenter", "--viewall"]
     cmd_prefix = []
     if shutil.which("xvfb-run"):
         cmd_prefix = ["xvfb-run", "-a"]
-    cmd = cmd_prefix + [openscad_bin(), "-o", str(out), "-D", f'part="{part}"'] + extra + [str(model)]
+    dflags = []
+    for k, v in (defines or {}).items():
+        val = f'"{v}"' if isinstance(v, str) else ("true" if v is True else "false" if v is False else str(v))
+        dflags += ["-D", f"{k}={val}"]
+    cmd = cmd_prefix + [openscad_bin(), "-o", str(out), "-D", f'part="{part}"'] + dflags + extra + [str(model)]
     p = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
     return {"ok": p.returncode == 0 and out.exists(), "cmd": " ".join(cmd)}
 
@@ -38,7 +42,7 @@ def export(project: Project, formats: list[str] | None = None, parts: list[str] 
         if fmt == "png":
             for v in views:
                 out = out_dir / f"{v['name']}.png"
-                r = _png(model, out, v["part"], v.get("camera", "0,0,0,55,0,25,500"))
+                r = _png(model, out, v["part"], v.get("camera", "0,0,0,55,0,25,500"), defines=v.get("defines"))
                 result[f"{v['name']}.png"] = r["ok"]
                 print(f"  [{'ok' if r['ok'] else 'FAIL'}] {out.name}")
             continue

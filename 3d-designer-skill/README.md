@@ -4,10 +4,22 @@ An agentic **plan → build → inspect → learn** workflow for parametric 3D d
 [Claude Code](https://claude.ai/code) skill with four specialised sub-agents, a Python pipeline that
 compiles and checks OpenSCAD models, multi-format export, and a knowledge base that learns from every job.
 
-The first project built with it is a **slim, 12 V worm-gear-driven turntable for a Whatnot card auction**
-(spin/hold switch, 2–5 RPM knob) — see [`projects/whatnot-turntable`](projects/whatnot-turntable).
+Two projects are built with it, both **12 V card-display turntables for a Whatnot auction** (spin/hold
+switch, 2–5 RPM knob):
 
-![assembly](projects/whatnot-turntable/build/export/assembly.png)
+| | v1 worm drive — [`projects/whatnot-turntable`](projects/whatnot-turntable) | v2 crown drive — [`projects/whatnot-turntable-v2-crown`](projects/whatnot-turntable-v2-crown) |
+|---|---|---|
+| Drive | JGY-370 worm gearmotor → 17T/51T spur pair → rotating 8 mm rod | N20 gearmotor lying flat → 12T pinion → 42T crown gear on a fixed post |
+| Base / overall height | 42 / 56 mm | **26 / 35 mm** |
+| Holds still when off | yes (worm self-locks) | mostly (1:1000 N20), do not force the plate |
+| Noise | quieter | one more printed mesh |
+| Parts cost | ≈ $30–40 | ≈ $20–25 |
+| Printer plates | any 220 mm bed | auto-plated for a Bambu Lab H2S (`build/plates/*.3mf`) |
+
+The reasoning behind v2, including what is wrong with a literal bevel-gear version, is in
+[`DESIGN_NOTES.md`](projects/whatnot-turntable-v2-crown/DESIGN_NOTES.md).
+
+![v2 assembly](projects/whatnot-turntable-v2-crown/build/export/exploded.png)
 
 ## How it works
 
@@ -23,7 +35,7 @@ The first project built with it is a **slim, 12 V worm-gear-driven turntable for
 | Plan | `design-planner` | `designer plan` | `plan.json`: hardware + critical dims, mechanism math, parts + print orientation, steps with `done_when`, checks |
 | Build | `design-builder` | `designer build` | `.scad` model using `lib/`, compiled STLs, `CHECK` values, BOM / wiring / assembly docs |
 | Inspect | `design-inspector` | `designer inspect` | watertightness, bed fit, overhang %, thin fragments, **interference between assembled parts**, plan assertions, renders → ranked findings |
-| Export | — | `designer export` | STL, 3MF, OBJ, GLB, PLY, OFF, AMF, SVG/DXF outlines, PNG views |
+| Export | — | `designer export` / `designer plate` | STL, 3MF, OBJ, GLB, PLY, OFF, AMF, SVG/DXF outlines, PNG views; parts packed onto the printer bed as ready-to-slice 3MF plates |
 | Learn | `design-learner` | `designer learn` / `stats` | metrics per run, tagged lessons, reinforced weights, tuned defaults |
 
 The learner's output feeds the next planner run: lessons whose tags match the new spec are injected into
@@ -63,7 +75,7 @@ projects/whatnot-turntable/           the turntable: spec, plan, model, BOM, wir
 docs/                                 ARCHITECTURE.md, EXPORT_FORMATS.md
 ```
 
-## The turntable at a glance
+## The turntables at a glance
 
 | | |
 |---|---|

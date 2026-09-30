@@ -88,3 +88,40 @@ module d_bore(d, flat = 0, h = 10) {
         cylinder(d = d, h = h, $fn = 48);
     }
 }
+
+// ---------------------------------------------------------------------------
+// Crown (face) gear for a 90-degree drive from a spur pinion, FDM-friendly.
+// Teeth are straight 20-deg rack flanks standing on a flat disc, tapered so that the
+// gap between teeth equals the pinion tooth thickness (+ backlash) at every radius.
+// Exact at the pitch radius R = m*N/2, good enough across +-3.5 mm of face width when printed.
+// The pinion (involute_gear, same module) sits with its axis horizontal at height
+// (root + 1.25 m) + pinion pitch radius above the disc, centred on radius R.
+//   r_in / r_out : radial extent of the teeth (default R-2.5 .. R+3.5)
+//   disc_t       : disc thickness under the teeth; teeth rise 2.25 m above it
+// ---------------------------------------------------------------------------
+function crown_pitch_radius(teeth, m) = m * teeth / 2;
+function crown_tooth_height(m) = 2.25 * m;
+
+module _crown_tooth_profile(r, teeth, m, pa, backlash) {
+    // 2-D profile in (tangential, vertical); root at z = 0, tip at z = 2.25 m
+    pitch = 2 * PI * r / teeth;
+    s = pitch - PI * m / 2 - backlash;      // pitch-line thickness leaves a gap of one pinion tooth + backlash
+    hd = 1.25 * m; ha = m; t = tan(pa);
+    polygon([[-(s / 2 + hd * t), -0.01], [(s / 2 + hd * t), -0.01], [(s / 2 - ha * t), hd + ha], [-(s / 2 - ha * t), hd + ha]]);
+}
+
+module crown_gear(teeth, m, disc_t = 4, r_in = 0, r_out = 0, rim = 1.5, pa = 20, backlash = 0.2, bore = 0) {
+    R = crown_pitch_radius(teeth, m);
+    ri = r_in > 0 ? r_in : R - 2.5;
+    ro = r_out > 0 ? r_out : R + 3.5;
+    difference() {
+        union() {
+            cylinder(r = ro + rim, h = disc_t, $fn = 120);
+            translate([0, 0, disc_t]) for (i = [0 : teeth - 1]) rotate(i * 360 / teeth) hull() {
+                translate([ri, 0, 0]) rotate([90, 0, 90]) linear_extrude(0.01) _crown_tooth_profile(ri, teeth, m, pa, backlash);
+                translate([ro, 0, 0]) rotate([90, 0, 90]) linear_extrude(0.01) _crown_tooth_profile(ro, teeth, m, pa, backlash);
+            }
+        }
+        if (bore > 0) translate([0, 0, -1]) cylinder(d = bore, h = disc_t + 10, $fn = 48);
+    }
+}
