@@ -1,0 +1,162 @@
+[
+  {
+    "id": "L001",
+    "lesson": "Build round plates and rims as one rotate_extrude() profile; a union of coincident cylinders leaves a 4-face seam edge and a non-watertight STL.",
+    "tags": [
+      "enclosure",
+      "general",
+      "plate"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 2.357,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L002",
+    "lesson": "A part with features on both faces (boss below, hub above) cannot print flat: split the smaller feature into its own part (e.g. a spacer ring) instead of adding supports.",
+    "tags": [
+      "bearing",
+      "general",
+      "hub"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 2.357,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L003",
+    "lesson": "Arched clamps/straps print on their side as a 2-D profile; standing them up makes the crown a 90 deg overhang.",
+    "tags": [
+      "clamp",
+      "motor",
+      "strap"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.948,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L004",
+    "lesson": "Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm.",
+    "tags": [
+      "enclosure",
+      "gear",
+      "general",
+      "pocket"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 2.357,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L005",
+    "lesson": "Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear.",
+    "tags": [
+      "bearing",
+      "gear",
+      "turntable"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 2.357,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L006",
+    "lesson": "Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length.",
+    "tags": [
+      "enclosure",
+      "motor",
+      "turntable"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 2.357,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L007",
+    "lesson": "Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap.",
+    "tags": [
+      "enclosure",
+      "general",
+      "lid"
+    ],
+    "source": "whatnot-turntable",
+    "weight": 1.948,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L008",
+    "lesson": "Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position.",
+    "tags": [
+      "bevel",
+      "crown-gear",
+      "gear",
+      "general",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L009",
+    "lesson": "When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it.",
+    "tags": [
+      "crown-gear",
+      "gear"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L010",
+    "lesson": "Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking.",
+    "tags": [
+      "bearing",
+      "enclosure",
+      "general",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L011",
+    "lesson": "Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed.",
+    "tags": [
+      "enclosure",
+      "gear",
+      "general"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.21,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L012",
+    "lesson": "Anything displayed on a turntable goes on the rotation axis with a positive locating recess in the plate; an off-axis stand orbits and reads badly on camera.",
+    "tags": [
+      "display",
+      "general",
+      "plate",
+      "turntable"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  },
+  {
+    "id": "L013",
+    "lesson": "Card stands for camera work: lean the slot 10-15 deg back, keep the front lip under ~12 mm with a finger notch, and size the slot for the sleeve (3 mm), not the bare card.",
+    "tags": [
+      "card",
+      "display",
+      "easel"
+    ],
+    "source": "whatnot-turntable-v2-crown",
+    "weight": 1.0,
+    "added": "2026-09-30"
+  }
+]

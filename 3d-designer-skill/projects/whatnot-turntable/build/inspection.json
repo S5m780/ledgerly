@@ -1,0 +1,233 @@
+{
+  "meshes": [
+    {
+      "file": "base.stl",
+      "faces": 7504,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 134807.9,
+      "extents_mm": [
+        180.0,
+        180.0,
+        39.4
+      ],
+      "components": 6,
+      "issues": [],
+      "overhang_area_fraction": 0.01
+    },
+    {
+      "file": "lid.stl",
+      "faces": 4792,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 78354.4,
+      "extents_mm": [
+        180.0,
+        180.0,
+        9.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.002
+    },
+    {
+      "file": "gear.stl",
+      "faces": 8584,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 32496.4,
+      "extents_mm": [
+        79.45,
+        79.49,
+        16.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.048,
+      "notes": [
+        "5% of surface overhangs; small bridges/chamfers are probably fine"
+      ]
+    },
+    {
+      "file": "pinion.stl",
+      "faces": 2664,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 3665.7,
+      "extents_mm": [
+        28.32,
+        28.44,
+        8.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.0
+    },
+    {
+      "file": "hub.stl",
+      "faces": 952,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 9310.9,
+      "extents_mm": [
+        50.0,
+        50.0,
+        13.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.003
+    },
+    {
+      "file": "spacer.stl",
+      "faces": 576,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 183.0,
+      "extents_mm": [
+        12.0,
+        12.0,
+        3.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.0
+    },
+    {
+      "file": "plate.stl",
+      "faces": 3540,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 232857.9,
+      "extents_mm": [
+        210.0,
+        210.0,
+        8.5
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.02
+    },
+    {
+      "file": "plate_half_b.stl",
+      "faces": 1974,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 115893.6,
+      "extents_mm": [
+        104.85,
+        209.99,
+        8.5
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.022
+    },
+    {
+      "file": "motor_strap.stl",
+      "faces": 964,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 985.4,
+      "extents_mm": [
+        43.2,
+        14.9,
+        8.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.032,
+      "notes": [
+        "3% of surface overhangs; small bridges/chamfers are probably fine"
+      ]
+    },
+    {
+      "file": "card_easel.stl",
+      "faces": 1120,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 35888.4,
+      "extents_mm": [
+        96.0,
+        96.0,
+        27.0
+      ],
+      "components": 1,
+      "issues": [],
+      "overhang_area_fraction": 0.024
+    }
+  ],
+  "design_checks": [
+    {
+      "expr": "interference has no interference (volume 0.00 mm\u00b3)",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "abs(center_distance - 51) < 0.01",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "ratio >= 2.5 and ratio <= 4",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "motor_far_radius < inner_r - 1",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "pcb_far_radius < inner_r - 0.5",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "base_height < 50",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "total_height < 60",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "plate_d <= 220",
+      "ok": true,
+      "error": ""
+    },
+    {
+      "expr": "rod_span_hi > hub_hex_top - 3",
+      "ok": true,
+      "error": ""
+    }
+  ],
+  "failures": [],
+  "warnings": [
+    "interference: WARNING: Object may not be a valid 2-manifold and may need repair!",
+    "interference: EXPORT-WARNING: Exported object may not be a valid 2-manifold and may need repair"
+  ],
+  "ok": true,
+  "check_values": {
+    "base_height": 42.4,
+    "total_height": 57.4,
+    "plate_d": 210.0,
+    "base_d": 180.0,
+    "center_distance": 51.0,
+    "gear_od": 79.5,
+    "pinion_od": 28.5,
+    "ratio": 3.0,
+    "motor_shaft_tip": 42.4,
+    "lid_z0": 39.4,
+    "relief": true,
+    "rod_span_lo": 15.4,
+    "rod_span_hi": 55.4,
+    "hub_hex_top": 57.4,
+    "motor_far_radius": 85.1072,
+    "inner_r": 87.6,
+    "ok": true,
+    "pcb_far_radius": 84.2333
+  }
+}

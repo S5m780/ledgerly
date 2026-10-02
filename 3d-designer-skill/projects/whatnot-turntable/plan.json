@@ -1,0 +1,259 @@
+{
+  "name": "Whatnot card-display turntable",
+  "model": "turntable.scad",
+  "version": 1,
+  "goal": "Slim 12 V worm-gear turntable, 2-5 RPM variable, switchable spin/hold, for a card auction livestream.",
+  "requirements": [
+    "12 V DC worm-gear motor hidden inside the base; motor output drives a gear on a vertical shaft that carries the plate",
+    "Plate speed adjustable, about 2\u20135 RPM (one turn every 12\u201330 s)",
+    "Rocker switch: spin / hold.  Rotary knob: speed.  Barrel jack for a 12 V wall adapter",
+    "Slim: base as low as the motor allows, plate \u2265 200 mm so several cards or a small stand fit",
+    "All custom parts 3D-printable on a 220 \u00d7 220 \u00d7 250 mm bed without supports (plate optionally split in two)",
+    "Off-the-shelf parts only from common hobby suppliers; no soldering beyond wires to pads/tabs",
+    "Plate removable without tools for shipping; optional card easel that sits on the plate"
+  ],
+  "tags": [
+    "turntable",
+    "gear",
+    "worm-gear-motor",
+    "12v",
+    "pwm",
+    "bearing",
+    "enclosure",
+    "display"
+  ],
+  "constraints": {
+    "print_bed_mm": [
+      220,
+      220,
+      250
+    ],
+    "material": "PETG",
+    "nozzle_mm": 0.4,
+    "layer_mm": 0.2,
+    "min_wall_mm": 1.6
+  },
+  "hardware": [
+    {
+      "part": "JGY-370 12 V worm-gear motor, 15 RPM, 6 mm D-shaft",
+      "critical_dims": "gearbox 32x37x26, shaft 6 mm D x 14, can dia 24.4"
+    },
+    {
+      "part": "608ZZ bearing x2",
+      "critical_dims": "22 OD x 8 ID x 7"
+    },
+    {
+      "part": "8 mm steel rod x 40 mm",
+      "critical_dims": "8.0 h7"
+    },
+    {
+      "part": "PWM DC motor speed controller 12 V >= 2 A with panel potentiometer",
+      "critical_dims": "board <= 60x45x18"
+    },
+    {
+      "part": "KCD1 rocker switch",
+      "critical_dims": "cutout 13.2x19.2"
+    },
+    {
+      "part": "DC-022B 5.5x2.1 panel barrel jack",
+      "critical_dims": "12 mm hole"
+    }
+  ],
+  "mechanism": {
+    "train": "motor (worm, 15 RPM) -> 17T pinion -> 51T spur gear (3:1) -> rod -> hub -> plate",
+    "plate_rpm_at_100pct": 5.0,
+    "plate_rpm_at_40pct": 2.0,
+    "load_path": "plate -> hub boss -> top 608 inner race -> lid ledge -> base; bottom 608 locates the rod radially"
+  },
+  "parts": [
+    {
+      "name": "base",
+      "printable": true,
+      "orientation": "as modelled (open side up)",
+      "material": "PETG",
+      "infill": "20%"
+    },
+    {
+      "name": "lid",
+      "printable": true,
+      "orientation": "top face down (selector flips it)",
+      "material": "PETG"
+    },
+    {
+      "name": "gear",
+      "printable": true,
+      "orientation": "teeth face down, hub up (selector flips it)",
+      "material": "PETG",
+      "perimeters": 4
+    },
+    {
+      "name": "pinion",
+      "printable": true,
+      "orientation": "flat",
+      "material": "PETG",
+      "perimeters": 5,
+      "infill": "60%"
+    },
+    {
+      "name": "hub",
+      "printable": true,
+      "orientation": "disc face down, hex boss up",
+      "material": "PETG",
+      "infill": "50%"
+    },
+    {
+      "name": "spacer",
+      "printable": true,
+      "orientation": "flat",
+      "material": "PETG",
+      "infill": "100%"
+    },
+    {
+      "name": "plate",
+      "printable": true,
+      "orientation": "top face up",
+      "material": "PETG or PLA",
+      "infill": "15%"
+    },
+    {
+      "name": "plate_half_b",
+      "printable": true,
+      "orientation": "top face up",
+      "defines": {
+        "plate_sections": 2
+      },
+      "optional": true
+    },
+    {
+      "name": "motor_strap",
+      "printable": true,
+      "orientation": "on its side (selector rotates it)"
+    },
+    {
+      "name": "card_easel",
+      "printable": true,
+      "orientation": "flat"
+    },
+    {
+      "name": "assembly",
+      "printable": false
+    },
+    {
+      "name": "exploded",
+      "printable": false
+    },
+    {
+      "name": "interference",
+      "printable": false,
+      "must_be_empty": true,
+      "note": "pairwise intersections of assembled parts"
+    }
+  ],
+  "steps": [
+    {
+      "step": "layout",
+      "done_when": "motor, gear train, bearings, PCB and panel parts fit inside base_d with >= 1 mm clearance (CHECK echoes)"
+    },
+    {
+      "step": "drive train",
+      "done_when": "centre distance = m*(N1+N2)/2, ratio gives 2-5 RPM with chosen motor"
+    },
+    {
+      "step": "spindle & load path",
+      "done_when": "plate weight goes through the bearing inner race, never a printed face"
+    },
+    {
+      "step": "enclosure",
+      "done_when": "lid screws, panel cutouts, foot recesses present; wall >= min_wall"
+    },
+    {
+      "step": "printability",
+      "done_when": "every part prints flat without supports; inspection passes"
+    }
+  ],
+  "checks": [
+    "abs(center_distance - 51) < 0.01",
+    "ratio >= 2.5 and ratio <= 4",
+    "motor_far_radius < inner_r - 1",
+    "pcb_far_radius < inner_r - 0.5",
+    "base_height < 50",
+    "total_height < 60",
+    "plate_d <= 220",
+    "rod_span_hi > hub_hex_top - 3"
+  ],
+  "views": [
+    {
+      "name": "assembly",
+      "part": "assembly",
+      "camera": "0,0,25,55,0,35,520"
+    },
+    {
+      "name": "exploded",
+      "part": "exploded",
+      "camera": "0,0,60,60,0,35,700"
+    },
+    {
+      "name": "base_top",
+      "part": "base",
+      "camera": "0,0,20,0,0,0,420"
+    },
+    {
+      "name": "base_iso",
+      "part": "base",
+      "camera": "0,0,20,50,0,30,420"
+    }
+  ],
+  "exports": [
+    "stl",
+    "3mf",
+    "obj",
+    "glb",
+    "svg",
+    "png"
+  ],
+  "applied_lessons": [
+    {
+      "id": "L005",
+      "lesson": "Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear."
+    },
+    {
+      "id": "L010",
+      "lesson": "Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking."
+    },
+    {
+      "id": "L004",
+      "lesson": "Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm."
+    },
+    {
+      "id": "L006",
+      "lesson": "Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length."
+    },
+    {
+      "id": "L008",
+      "lesson": "Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position."
+    },
+    {
+      "id": "L011",
+      "lesson": "Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed."
+    },
+    {
+      "id": "L001",
+      "lesson": "Build round plates and rims as one rotate_extrude() profile; a union of coincident cylinders leaves a 4-face seam edge and a non-watertight STL."
+    },
+    {
+      "id": "L002",
+      "lesson": "A part with features on both faces (boss below, hub above) cannot print flat: split the smaller feature into its own part (e.g. a spacer ring) instead of adding supports."
+    },
+    {
+      "id": "L007",
+      "lesson": "Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap."
+    },
+    {
+      "id": "L009",
+      "lesson": "When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it."
+    }
+  ],
+  "open_questions": [
+    "Measure your JGY-370: gearbox height along the shaft (jgy_gb_h) and shaft length set the base height."
+  ]
+}

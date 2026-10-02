@@ -1,0 +1,156 @@
+{
+  "printer": {
+    "name": "Bambu Lab H2S",
+    "bed_mm": [
+      350,
+      320,
+      325
+    ],
+    "margin_mm": 5,
+    "gap_mm": 5
+  },
+  "plates": [
+    {
+      "file": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/plates/plate_1.3mf",
+      "parts": [
+        {
+          "name": "plate",
+          "at_mm": [
+            5,
+            5
+          ],
+          "size_mm": [
+            210.0,
+            210.0,
+            8.5
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/user/ledgerly/3d-designer-skill/projects/whatnot-turntable-v2-crown/build/plates/plate_2.3mf",
+      "parts": [
+        {
+          "name": "base",
+          "at_mm": [
+            5,
+            5
+          ],
+          "size_mm": [
+            165.0,
+            165.0,
+            23.8
+          ]
+        },
+        {
+          "name": "lid",
+          "at_mm": [
+            175.0,
+            5
+          ],
+          "size_mm": [
+            165.0,
+            165.0,
+            5.0
+          ]
+        },
+        {
+          "name": "card_easel",
+          "at_mm": [
+            5,
+            175.0
+          ],
+          "size_mm": [
+            96.0,
+            96.0,
+            27.0
+          ]
+        },
+        {
+          "name": "crown",
+          "at_mm": [
+            106.0,
+            175.0
+          ],
+          "size_mm": [
+            52.0,
+            52.0,
+            11.8
+          ]
+        },
+        {
+          "name": "hub",
+          "at_mm": [
+            163.0,
+            175.0
+          ],
+          "size_mm": [
+            50.0,
+            50.0,
+            17.1
+          ]
+        },
+        {
+          "name": "motor_strap",
+          "at_mm": [
+            218.0,
+            175.0
+          ],
+          "size_mm": [
+            8.0,
+            30.6,
+            2.4
+          ]
+        },
+        {
+          "name": "pinion",
+          "at_mm": [
+            231.0,
+            175.0
+          ],
+          "size_mm": [
+            14.0,
+            14.0,
+            10.0
+          ]
+        },
+        {
+          "name": "pinion",
+          "at_mm": [
+            250.0,
+            175.0
+          ],
+          "size_mm": [
+            14.0,
+            14.0,
+            10.0
+          ]
+        },
+        {
+          "name": "spacer",
+          "at_mm": [
+            269.0,
+            175.0
+          ],
+          "size_mm": [
+            10.0,
+            10.0,
+            5.4
+          ]
+        },
+        {
+          "name": "spacer",
+          "at_mm": [
+            284.0,
+            175.0
+          ],
+          "size_mm": [
+            10.0,
+            10.0,
+            5.4
+          ]
+        }
+      ]
+    }
+  ]
+}

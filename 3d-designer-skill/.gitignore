@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+projects/*/build/*.stl
+projects/*/build/_*.stl
+projects/*/build/_proj_*.scad
+projects/*/build/export/*.obj
+projects/*/build/export/*.glb
+projects/*/build/export/*.dxf
+# keep: build/export/*.stl *.3mf *.svg *.png, build/plates/*.3mf, inspection + manifest json/md

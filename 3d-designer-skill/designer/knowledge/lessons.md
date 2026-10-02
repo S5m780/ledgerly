@@ -1,0 +1,15 @@
+# Lessons (append-only, machine copy in lessons.json)
+
+- **L001** (enclosure, general, plate) — Build round plates and rims as one rotate_extrude() profile; a union of coincident cylinders leaves a 4-face seam edge and a non-watertight STL. _(from whatnot-turntable)_
+- **L002** (bearing, general, hub) — A part with features on both faces (boss below, hub above) cannot print flat: split the smaller feature into its own part (e.g. a spacer ring) instead of adding supports. _(from whatnot-turntable)_
+- **L003** (clamp, motor, strap) — Arched clamps/straps print on their side as a 2-D profile; standing them up makes the crown a 90 deg overhang. _(from whatnot-turntable)_
+- **L004** (enclosure, gear, general, pocket) — Pocket ceilings printed face-down are flat overhangs the area metric under-reports: give pockets 45 deg conical walls and keep any remaining bridge under ~30 mm. _(from whatnot-turntable)_
+- **L005** (bearing, gear, turntable) — Sink the lid bearing boss into a recess in the drive gear: it saves ~4 mm of base height versus stacking bearing above gear. _(from whatnot-turntable)_
+- **L006** (enclosure, motor, turntable) — Orient a gearmotor tangentially (can along the base's circumference) so the base diameter is set by the plate gear, not by motor length. _(from whatnot-turntable)_
+- **L007** (enclosure, general, lid) — Run an interference view (intersection() of every assembled pair, must be empty) before shipping: a lid locating lip crossing the screw bosses is invisible in renders but shows as ~120 mm3 overlap. _(from whatnot-turntable)_
+- **L008** (bevel, crown-gear, gear, general, turntable) — Right-angle drives for FDM: use a crown (face) gear + spur pinion, not a bevel pair; it prints teeth-up with no overhang and tolerates +-0.5 mm axial pinion position. _(from whatnot-turntable-v2-crown)_
+- **L009** (crown-gear, gear) — When a pinion meshes a crown/face gear on its centre line, phase the pinion by half a tooth pitch (180/N degrees) or tooth lands on tooth; the interference view catches it. _(from whatnot-turntable-v2-crown)_
+- **L010** (bearing, enclosure, general, turntable) — Slimmest vertical-axis stack: fixed post, one bearing inside each rotating part, spacer tube between inner races; height is then set by the pinion OD, not by bearing stacking. _(from whatnot-turntable-v2-crown)_
+- **L011** (enclosure, gear, general) — Keep >= 2 mm between a rotating disc rim and any static wall; a 0.5 mm graze shows up as <1 mm3 in the interference view but will click when printed. _(from whatnot-turntable-v2-crown)_
+- **L012** (display, general, plate, turntable) — Anything displayed on a turntable goes on the rotation axis with a positive locating recess in the plate; an off-axis stand orbits and reads badly on camera. _(from whatnot-turntable-v2-crown)_
+- **L013** (card, display, easel) — Card stands for camera work: lean the slot 10-15 deg back, keep the front lip under ~12 mm with a finger notch, and size the slot for the sleeve (3 mm), not the bare card. _(from whatnot-turntable-v2-crown)_
